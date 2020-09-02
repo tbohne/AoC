@@ -17,7 +17,7 @@ def solve(data: str) -> Tuple[int, int]:
 
 
 if __name__ == '__main__':
-    with open('input1.txt', 'r') as file:
+    with open('in1.txt', 'r') as file:
         data = file.read().replace('\n', '')
     floor, first_basement = solve(data)
     print("part one:", floor)
