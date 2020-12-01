@@ -1,20 +1,18 @@
 #!/usr/bin/python3
 
 def part_two(data: list) -> int:
+    needed = {2020 - x - y: (x, y) for x in data for y in data}
     for x in data:
-        for y in data:
-            for z in data:
-                if x + y + z == 2020:
-                    return x * y * z
-    return 0
+        if x in needed:
+            y, z = needed[x]
+            return x * y * z
 
 
 def part_one(data: list) -> int:
+    needed = [2020 - x for x in data]
     for x in data:
-        for y in data:
-            if x + y == 2020:
-                return x * y
-    return 0
+        if x in needed:
+            return x * (2020 - x)
 
 
 if __name__ == '__main__':
