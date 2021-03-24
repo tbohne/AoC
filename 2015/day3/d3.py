@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 
 def perform_move(move: str, x: int, y: int) -> tuple:
@@ -43,7 +43,6 @@ def part_two(data: str) -> int:
 
 
 if __name__ == '__main__':
-
     with open('in3.txt', 'r') as file:
         data = file.read().strip()
 
