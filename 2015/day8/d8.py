@@ -1,21 +1,36 @@
 #!/usr/bin/env python
 
+import re
+
 TEST = ['\"\"', '\"abc\"', '\"aaa\\\"aaa\"', '\"\\x27\"']
 
 
 def part_one(lines: list) -> int:
-    code = 0
+    original = 0
     mem = 0
     for l in lines:
-        code += len(l)
+        original += len(l)
         mem += len(eval(l))
-    return code - mem
+    return original - mem
+
+
+def part_two(lines: list) -> int:
+    original = 0
+    encoded = 0
+    for l in lines:
+        original += len(l)
+        encoded += len(re.escape(l)) + l.count("\"") + 2
+    return encoded - original
 
 
 if __name__ == '__main__':
     assert part_one(TEST) == 12
+    assert part_two(TEST) == 19
     with open('in8.txt', 'r') as file:
         data = [l.strip() for l in file.readlines()]
         p1 = part_one(data)
+        p2 = part_two(data)
         assert p1 == 1342
+        assert p2 == 2074
         print("p1:", p1)
+        print("p2:", p2)
