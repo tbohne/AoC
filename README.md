@@ -5,4 +5,5 @@ My solutions for [Advent of Code](https://adventofcode.com/).
 
 # Usage
 
-`python day.py input.txt`
+`python day.py input.txt`  
+e.g. `python 2015/d1.py 2015/d1.txt`
