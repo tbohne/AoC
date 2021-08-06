@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import fileinput
+
 
 def perform_move(move: str, x: int, y: int) -> tuple:
     if move == '^':
@@ -25,8 +27,7 @@ def part_one(data: str) -> int:
 
 def part_two(data: str) -> int:
     x1 = y1 = x2 = y2 = 0
-    locations = []
-    locations.append((x1, y1))
+    locations = [(x1, y1)]
     first = True
     for move in data:
         if first:
@@ -43,19 +44,16 @@ def part_two(data: str) -> int:
 
 
 if __name__ == '__main__':
-    with open('in3.txt', 'r') as file:
-        data = file.read().strip()
+    data = "".join(fileinput.input())
 
     assert part_one('>') == 2
     assert part_one('^>v<') == 4
     assert part_one('^v^v^v^v^v') == 2
-
     assert part_two("^v") == 3
     assert part_two('^>v<') == 3
     assert part_two('^v^v^v^v^v') == 11
-
     assert part_one(data) == 2081
     assert part_two(data) == 2341
 
-    print("part one:", part_one(data))
-    print("part two:", part_two(data))
+    print("p1:", part_one(data))
+    print("p2:", part_two(data))

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import fileinput
 from hashlib import md5
 
 
@@ -18,5 +19,11 @@ if __name__ == '__main__':
     assert coin_mining("ckczppom", 5) == 117946
     assert coin_mining("ckczppom", 6) == 3938038
 
-    print("part one:", coin_mining("ckczppom", 5))
-    print("part two:", coin_mining("ckczppom", 6))
+    data = "".join(fileinput.input()).strip()
+    p1 = coin_mining(data, 5)
+    p2 = coin_mining(data, 6)
+
+    assert p1 == 117946
+    assert p2 == 3938038
+    print("p1:", p1)
+    print("p2:", p2)

@@ -2,6 +2,7 @@
 
 import numpy as np
 import itertools
+import fileinput
 
 TEST = ["London to Dublin = 464", "London to Belfast = 518", "Dublin to Belfast = 141"]
 
@@ -38,10 +39,9 @@ def solve(data: list) -> (int, int):
 
 if __name__ == '__main__':
     assert solve(TEST)[0] == 605
-    with open('in9.txt', 'r') as file:
-        lines = [l.strip() for l in file.readlines()]
-        p1, p2 = solve(lines)
-        assert p1 == 207
-        assert p2 == 804
-        print("p1:", p1)
-        print("p2:", p2)
+    lines = [l.strip() for l in fileinput.input()]
+    p1, p2 = solve(lines)
+    assert p1 == 207
+    assert p2 == 804
+    print("p1:", p1)
+    print("p2:", p2)

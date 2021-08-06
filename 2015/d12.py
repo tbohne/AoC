@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import fileinput
 import json
 import re
 
@@ -38,11 +38,10 @@ def solve(dic, part_one):
 
 
 if __name__ == '__main__':
-    with open('in12.txt', 'r') as file:
-        data = json.loads(file.read())
-        p1 = sum([solve(val, True) for _, val in data.items()])
-        p2 = sum([solve(val, False) for _, val in data.items()])
-        assert p1 == 119433
-        assert p2 == 68466
-        print("p1:", p1)
-        print("p2:", p2)
+    data = json.loads("".join(fileinput.input()))
+    p1 = sum([solve(val, True) for _, val in data.items()])
+    p2 = sum([solve(val, False) for _, val in data.items()])
+    assert p1 == 119433
+    assert p2 == 68466
+    print("p1:", p1)
+    print("p2:", p2)

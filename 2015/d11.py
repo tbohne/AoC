@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-
-INPUT = "hxbxwxba"
+import fileinput
 
 
 def chars_allowed(pw: list) -> bool:
@@ -48,7 +47,8 @@ def solve(pw: str) -> str:
 if __name__ == '__main__':
     assert solve("abcdefgh") == "abcdffaa"
     assert solve("ghijklmn") == "ghjaabcc"
-    p1 = solve(INPUT)
+    data = "".join(fileinput.input()).strip()
+    p1 = solve(data)
     p2 = solve(increment(list(p1)))
     assert p1 == "hxbxxyzz"
     assert p2 == "hxcaabcc"

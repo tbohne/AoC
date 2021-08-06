@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import fileinput
+
 import numpy as np
 
 ON = "turn on"
@@ -41,10 +43,7 @@ def get_ranges(prefix: str, instruction: str) -> tuple:
 
 
 if __name__ == '__main__':
-
-    with open('in6.txt', 'r') as file:
-        data = file.readlines()
-
+    data = [l for l in fileinput.input()]
     matrix_p1 = np.zeros((1000, 1000))
     matrix_p2 = np.zeros((1000, 1000))
 
@@ -68,6 +67,5 @@ if __name__ == '__main__':
 
     assert p1 == 400410
     assert p2 == 15343601
-
     print("p1:", p1)
     print("p2:", p2)

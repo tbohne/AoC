@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import fileinput
 
 
 def and_gate(instruction: str, wires: dict) -> int:
@@ -84,9 +85,7 @@ def process_instructions(instructions: list, wires: dict, delayed: list, part_tw
 
 
 if __name__ == '__main__':
-    with open('in7.txt', 'r') as file:
-        data = file.readlines()
-
+    data = [l for l in fileinput.input()]
     wire_dict = {}
     delayed_instructions = []
 

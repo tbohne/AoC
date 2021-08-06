@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-
-INPUT = "1113222113"
+import fileinput
 
 
 def solve(iteration, seq):
@@ -23,8 +22,9 @@ def solve(iteration, seq):
 
 
 if __name__ == '__main__':
-    p1 = solve(40, INPUT)
-    p2 = solve(50, INPUT)
+    data = "".join(fileinput.input()).strip()
+    p1 = solve(40, data)
+    p2 = solve(50, data)
     assert p1 == 252594
     assert p2 == 3579328
     print("p1:", p1)

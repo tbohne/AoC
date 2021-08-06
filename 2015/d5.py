@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import re
+import fileinput
 
 
 def is_nice_part_two(s: str) -> bool:
@@ -19,10 +20,7 @@ def is_nice_part_one(s: str) -> bool:
 
 
 if __name__ == '__main__':
-
-    with open('in5.txt', 'r') as file:
-        data = file.readlines()
-
+    data = [l for l in fileinput.input()]
     cnt_one = cnt_two = 0
     for string in data:
         cnt_one += is_nice_part_one(string)
@@ -30,6 +28,5 @@ if __name__ == '__main__':
 
     assert cnt_one == 258
     assert cnt_two == 53
-
     print("p1:", cnt_one)
     print("p2:", cnt_two)

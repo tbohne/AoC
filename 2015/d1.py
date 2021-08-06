@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import fileinput
 from typing import Tuple
 
 
@@ -17,8 +18,9 @@ def solve(data: str) -> Tuple[int, int]:
 
 
 if __name__ == '__main__':
-    with open('in1.txt', 'r') as file:
-        data = file.read().replace('\n', '')
+    data = "".join(fileinput.input())
     floor, first_basement = solve(data)
-    print("part one:", floor)
-    print("part two:", first_basement)
+    assert floor == 232
+    assert first_basement == 1783
+    print("p1:", floor)
+    print("p2:", first_basement)

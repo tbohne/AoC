@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import fileinput
+
 
 def parse_dimensions(line: str) -> tuple:
     return tuple(map(int, line.split("x")))
@@ -19,20 +21,20 @@ def part_two(line: str) -> int:
 
 
 if __name__ == '__main__':
-
     assert part_one("2x3x4") == 58
     assert part_one("1x1x10") == 43
     assert part_two("2x3x4") == 34
     assert part_two("1x1x10") == 14
 
-    with open('in2.txt', 'r') as file:
-        data = file.readlines()
-
+    data = [l for l in fileinput.input()]
     wrapping = 0
     ribbon = 0
     for line in data:
         wrapping += part_one(line.strip())
         ribbon += part_two(line.strip())
 
-    print("part one:", wrapping)
-    print("part two:", ribbon)
+    assert wrapping == 1606483
+    assert ribbon == 3842356
+
+    print("p1:", wrapping)
+    print("p2:", ribbon)
