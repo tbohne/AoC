@@ -3,10 +3,10 @@ import fileinput
 import itertools
 
 
-def preprocess_data(raw_data):
+def preprocess_data(raw_data: list) -> (dict, list):
     dic = {}
-    for l in raw_data:
-        name, _, mode, amount, _, _, _, _, _, _, partner = l.split(" ")
+    for line in raw_data:
+        name, _, mode, amount, _, _, _, _, _, _, partner = line.split(" ")
         dic[(name, partner.replace(".", ""))] = int(amount) if mode == "gain" else -int(amount)
     res = {}
     name_list = []
@@ -19,11 +19,11 @@ def preprocess_data(raw_data):
     return res, name_list
 
 
-def compute_optimal_happiness_change(info, names, part_one):
+def compute_optimal_happiness_change(info: dict, name_list: list, part_one: bool) -> int:
     if not part_one:
-        names.append("ME")
+        name_list.append("ME")
     optimal_change = 0
-    for perm in list(itertools.permutations(names)):
+    for perm in list(itertools.permutations(name_list)):
         change = 0
         for i in range(len(perm) - 1):
             if (perm[i], perm[i + 1]) in info.keys():
@@ -31,7 +31,6 @@ def compute_optimal_happiness_change(info, names, part_one):
             else:
                 if part_one or perm[i] != "ME" and perm[i + 1] != "ME":
                     change += info[perm[i + 1], perm[i]]
-
         if (perm[0], perm[len(perm) - 1]) in info:
             change += info[perm[0], perm[len(perm) - 1]]
         else:
@@ -43,7 +42,7 @@ def compute_optimal_happiness_change(info, names, part_one):
 
 
 if __name__ == '__main__':
-    data = [l.strip() for l in fileinput.input()]
+    data = [line.strip() for line in fileinput.input()]
     data, names = preprocess_data(data)
     p1 = compute_optimal_happiness_change(data, names, True)
     p2 = compute_optimal_happiness_change(data, names, False)
