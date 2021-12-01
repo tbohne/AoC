@@ -3,22 +3,14 @@
 import fileinput
 
 
-def solve(data, win_size):
-    num = None
-    cnt = 0
-
-    for l in range(len(data) - win_size + (win_size > 0)):
-        s = sum(data[l: l + win_size + (win_size == 0)])
-        if num is not None and s > num:
-            cnt += 1
-        num = s
-    return cnt
+def count_inc(data):
+    return sum([1 for i in range(1, len(data)) if data[i - 1] < data[i]])
 
 
 if __name__ == '__main__':
     data = [int(l.strip()) for l in fileinput.input()]
-    p1 = solve(data, 0)
-    p2 = solve(data, 3)
+    p1 = count_inc(data)
+    p2 = count_inc([sum(data[l: l + 3]) for l in range(len(data) - 2)])
 
     assert p1 == 1532
     assert p2 == 1571
