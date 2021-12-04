@@ -26,5 +26,4 @@ if __name__ == '__main__':
     p1, p2 = solve(data)
     assert p1 == 2070300
     assert p2 == 2078985210
-    print("p1:", p1)
-    print("p2:", p2)
+    print("p1:", p1, "p2:", p2)

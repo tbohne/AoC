@@ -2,16 +2,13 @@
 
 import fileinput
 
+
 def compute_most_and_least_common(dat):
-
-    bit_lists = [[] for i in range(len(dat[0]))]
-
+    bit_lists = [[] for _ in range(len(dat[0]))]
     for i in range(len(bit_lists)):
-        for d in dat:
-            bit_lists[i].append(d[i])
+        bit_lists[i] = [d[i] for d in dat]
 
-    most_common = ""
-    least_common = ""
+    most_common = least_common = ""
     for i in bit_lists:
         if i.count("1") == i.count("0"):
             most_common += "1"
@@ -24,8 +21,8 @@ def compute_most_and_least_common(dat):
             least_common += "1"
     return most_common, least_common
 
-def life_supp(dat, oxygen):
 
+def life_supp(dat, oxygen):
     rating = dat.copy()
 
     for i in range(len(dat[0])):
@@ -40,6 +37,7 @@ def life_supp(dat, oxygen):
             if len(rating) == 1:
                 return rating[0]
 
+
 if __name__ == '__main__':
     data = [l.strip() for l in fileinput.input()]
 
@@ -50,9 +48,6 @@ if __name__ == '__main__':
     co2 = life_supp(data, False)
     p2 = int(oxygen, 2) * int(co2, 2)
 
-
     assert p1 == 2003336
     assert p2 == 1877139
-
-    print("p1:", p1)
-    print("p2:", p2)
+    print("p1:", p1, "p2:", p2)

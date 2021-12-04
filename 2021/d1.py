@@ -14,6 +14,4 @@ if __name__ == '__main__':
 
     assert p1 == 1532
     assert p2 == 1571
-
-    print("p1:", p1)
-    print("p2:", p2)
+    print("p1:", p1, "p2:", p2)

@@ -8,12 +8,10 @@ def check_bingo(board):
     for row in board:
         if row.count("X") == len(board):
             return True
-
     for col in range(len(board)):
         column = [board[row][col] for row in range(len(board))]
         if column.count("X") == len(board):
             return True
-
     return False
 
 
