@@ -5,8 +5,9 @@ from typing import Tuple
 
 
 def solve(data: list) -> Tuple[int, int]:
-    calories = sorted([sum(map(int, elve.split())) for elve in data])[::-1]
+    calories = sorted([sum(map(int, elf.split())) for elf in data])[::-1]
     return calories[0], sum(calories[:3])
+
 
 if __name__ == '__main__':
     day_input = "".join(fileinput.input()).split('\n\n')
