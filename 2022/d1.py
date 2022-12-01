@@ -5,17 +5,11 @@ from typing import Tuple
 
 
 def solve(data: list) -> Tuple[int, int]:
-    elves = [[]]
-    for calories in data:
-        if calories:
-            elves[-1].append(int(calories))
-        else:
-            elves.append([])
-    return max([sum(i) for i in elves]), sum(sorted(sum(i) for i in elves)[::-1][:3])
-
+    calories = sorted([sum(map(int, elve.split())) for elve in data])[::-1]
+    return calories[0], sum(calories[:3])
 
 if __name__ == '__main__':
-    day_input = [l.strip() for l in fileinput.input()]
+    day_input = "".join(fileinput.input()).split('\n\n')
     p1, p2 = solve(day_input)
 
     assert p1 == 71300
