@@ -16,7 +16,7 @@ def solve_p1(data):
         s += score(moves[1])
         if moves[0] == moves[1]:
             s += 3
-        elif moves == ['A', 'B'] or moves == ['B', 'C'] or moves == ['C', 'A']:
+        elif WINNING_MOVES[moves[0]] == moves[1]:
             s += 6
     return s
 
