@@ -6,11 +6,11 @@ WINNING_MOVES = {'A': 'B', 'B': 'C', 'C': 'A'}
 LOSING_MOVES = {'A': 'C', 'B': 'A', 'C': 'B'}
 
 
-def score(option):
+def score(option: str) -> int:
     return ord(option) - 64
 
 
-def solve_p1(data):
+def solve_p1(data: list) -> int:
     s = 0
     for moves in data:
         s += score(moves[1])
@@ -21,7 +21,7 @@ def solve_p1(data):
     return s
 
 
-def solve_p2(data):
+def solve_p2(data: list) -> int:
     s = 0
     for moves in data:
         if moves[1] == 'B':
