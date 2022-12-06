@@ -3,13 +3,14 @@
 import copy
 import fileinput
 from typing import Tuple
+import numpy as np
 
 
 def get_top_of_stacks(stacks: list) -> str:
-    return "".join([i[-1] for i in stacks]).replace("[", "").replace("]", "")
+    return "".join([i[-1] for i in stacks])
 
 
-def solve(commands: list, stacks: list) -> Tuple[int, int]:
+def solve(commands: list, stacks: list) -> Tuple[str, str]:
     p1_stacks = copy.deepcopy(stacks)
     p2_stacks = copy.deepcopy(stacks)
 
@@ -28,20 +29,14 @@ def solve(commands: list, stacks: list) -> Tuple[int, int]:
 
 
 def parse_input(data: list) -> Tuple[list, list]:
-    lines = []
-    commands = []
+    stack_rows, commands = "".join(data).split("\n\n")
+    stack_rows = np.transpose([line[1::4] for line in stack_rows.split("\n")[:-1]])
+    commands = [c.strip() for c in commands.split("\n") if c != ""]
+    stacks = [[] for _ in range(len(stack_rows[0]))]
 
-    for l in data:
-        if 'move' in l:
-            commands.append(l.strip())
-        else:
-            lines.append(
-                l.replace("]        ", "] [*] [*]").replace("    [", "[*] [").replace("]    ", "] [*]").strip().split())
-
-    stacks = [[] for _ in range(len(lines[0]))]
-    for l in lines[:-2]:
+    for l in stack_rows:
         for i in range(len(l)):
-            if l[i] != "[*]":
+            if l[i] != " ":
                 stacks[i].append(l[i])
 
     return commands, [s[::-1] for s in stacks]
